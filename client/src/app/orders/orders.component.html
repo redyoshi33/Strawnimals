@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class='row'>
+		<form class='searchBar col-md-6' (submit)="submitSearch()">
+			<select name='searchcondition' [(ngModel)]="searchid">
+			    <option value="default">Search by</option>
+			    <option value="id">ID</option>
+				<option value="name">Name</option>
+				<option value="date">Date</option>
+			</select>
+			<input type='text' name='search' [(ngModel)]="search" /><button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+		<div class='dropDown col-md-6'>	
+			<select name='status' [(ngModel)]="filterstatus" (change)="filterStatus()">
+			    <option value="showall">Show All</option>
+				<option value="inprocess">Order in Process</option>
+				<option value="shipped">Shipped</option>
+				<option value="cancel">Cancelled</option>
+			</select>
+		</div>
+	</div>
+	<div class="reset"><button (click)="resetforms()">Reset Search</button></div>
+		<table class='table table-striped'>
+		    <thead>
+				<tr>
+					<th>Order ID</th>
+					<th>Name</th>
+					<th>Date</th>
+					<th class='wide'>Billing Address</th>
+					<th>Total</th>
+					<th class='medium'>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let order of displayed">
+					<td><a [routerLink]="[order._id]">{{order.id}}</a></td>
+					<td>{{order.name}}</td>
+					<td>{{formatDate(order.date)}}</td>
+					<td>{{order.billing}}</td>
+					<td>${{findTotal(order.items)}}</td>
+					<td>
+						<select name="orderStatus" (change)="updateStatus(order._id, $event)">
+							<option value="Shipped" [selected]="order.status==='Shipped'">Shipped</option>
+							<option value="Order in process" [selected]="order.status==='Order in process'">Order in Process</option>
+							<option value="Cancelled" [selected]="order.status==='Cancelled'">Cancelled</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class='pages'>
+			<button *ngFor="let page of pages" (click)="changePages(page)">{{page+1}}</button>
+		</div>
+</div>

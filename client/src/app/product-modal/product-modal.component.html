@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">ID {{data.id}}</h4>
+  <button type="button" class="close" aria-label="Close"
+   (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+  	<p>Name: <input type="text" name="productName" [(ngModel)]="data.name"></p>
+  	<p>Description: <textarea rows="7" cols="50" name="productDescription" [(ngModel)]="data.description"></textarea></p>
+  	<p>Categories: 
+  		<select name='category'>
+			<option value="Hat">Hat</option>
+			<option value="Shirt">Shirt</option>
+			<option value="Pants">Pants</option>
+			<option value="Shoes">Shoes</option>
+			<option value="Glasses">Glasses</option>
+		</select>
+	</p>
+  	<p>Images: <button>Upload</button></p>
+  </form>
+</div>
+<div class="modal-footer">
+  <button (click)="activeModal.dismiss('Close clicked')">
+    Cancel
+  </button>
+  <button>
+  	Preview
+  </button>
+  <button (click)="print()">
+  	Update
+  </button>
+</div>

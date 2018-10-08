@@ -1,0 +1,17 @@
+.container{
+	padding-top: 2rem;
+}
+.test{
+	width: 50%
+}
+.newProduct{
+	text-align: right;
+}
+.table{
+	margin-top: 2rem;
+	table-layout: fixed;
+	text-align: center;
+}
+.pages{
+	text-align: center
+}

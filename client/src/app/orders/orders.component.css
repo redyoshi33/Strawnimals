@@ -1,0 +1,30 @@
+.container{
+	padding-top: 2rem;
+}
+.searchBar{
+	text-align: left;
+	display: inline-block;
+}
+.reset{
+	text-align: left;
+}
+.dropDown{
+	text-align: right;
+	display: inline-block;
+}
+.table{
+	margin-top: 2rem;
+	table-layout: fixed;
+}
+.medium{
+	width:20%;
+}
+.wide{
+	width: 30%;
+}
+.pages{
+	text-align: center
+}
+th, td{
+	text-align: center;
+}

@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+	<div class="row">
+		<div class="orderInfo col-md-4 col-sm-10">
+			<p><b class="underline">Order ID:</b> {{order.id}}</p>
+			<p class="underline">Customer Shipping Info:</p>
+			<div class="info">
+				<p>Name: {{order.name}}</p>
+				<p>Address: {{order.shipping}}</p>
+				<p>City: </p>
+				<p>State: </p>
+				<p>Zipcode: </p>
+			</div>
+			<p class="underline">Customer Billing Info:</p>
+			<div class="info">
+				<p>Name: {{order.name}}</p>
+				<p>Address: {{order.billing}}</p>
+				<p>City: </p>
+				<p>State: </p>
+				<p>Zipcode: </p>
+			</div>
+		</div>
+		<div class="rightSide col-md-8 col-sm-10">
+			<table class='table table-striped'>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Item</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor=" let item of items">
+						<td>{{item.id}}</td>
+						<td>{{item.itemname}}</td>
+						<td>${{item.price.toFixed(2)}}</td>
+						<td>{{item.quantity}}</td>
+						<td>${{(item.quantity * item.price).toFixed(2)}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row">
+				<div class="shippedStatus col-sm-5">
+					<p [ngStyle]="myStyle"><b class="underline">Status:</b> {{order.status}}</p>
+				</div>
+				<div class="total col-sm-5">
+					<p>Sub total: ${{this.subtotal.toFixed(2)}}</p>
+					<p>Shipping: ${{this.shipping}}</p>
+					<p>Total Price: ${{this.subtotal+this.shipping}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
