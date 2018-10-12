@@ -1,0 +1,15 @@
+.imagesTable{
+	table-layout: fixed;
+}
+.imagesTable td{
+	vertical-align: middle;
+}
+.imagesTable p{
+	margin: 0rem;
+	vertical-align: middle;
+}
+img {
+	height: 4rem;
+	width: 4rem;
+	vertical-align: middle;
+}

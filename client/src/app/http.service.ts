@@ -18,4 +18,16 @@ export class HttpService {
   getProducts(){
   	return this._http.get('/getAllProduct')
   }
+  addProduct(product){
+    return this._http.post('/newProduct', product)
+  }
+  updateProduct(id, product){
+    return this._http.put('/updateProduct/'+id, product)
+  }
+  deleteProduct(id){
+    return this._http.delete('/deleteProduct/'+id)
+  }
+  imageUpload(image){
+    return this._http.post('/image', image)
+  }
 }

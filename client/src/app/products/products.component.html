@@ -3,12 +3,13 @@
 <div class="container">
 	<div class='row'>
 		<form class='searchBar col-md-6' (submit)="submitSearch()">
-			<input class="test" type='text' name='search' [(ngModel)]="search" /><button type="submit"><i class="fa fa-search"></i></button>
+			<input class="searchbar" type='text' name='search' [(ngModel)]="search" /><button type="submit"><i class="fa fa-search"></i></button>
 		</form>
 		<div class='newProduct col-md-6'>	
-			<button class="button">Add New Product</button>
+			<button class="button" (click)='newModal()'>Add New Product</button>
 		</div>
 	</div>
+	<h4 class="message">{{message}}</h4>
 		<table class='table table-striped'>
 		    <thead>
 				<tr>
@@ -22,12 +23,12 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let product of displayed">
-					<td>Picture</td>
+					<td><img [src]="product.mainImage"></td>
 					<td>{{product.id}}</td>
 					<td>{{product.name}}</td>
 					<td>{{product.count}}</td>
 					<td>{{product.sold}}</td>
-					<td><button class="button" (click)="editModal(product)">Edit</button> <button class="button">Delete</button></td>
+					<td><button class="button" (click)="editModal(product)">Edit</button> <button class="button" (click)="delteModal(product._id, product.name)">Delete</button></td>
 				</tr>
 			</tbody>
 		</table>

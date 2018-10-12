@@ -2,7 +2,7 @@
 	padding-top: 2rem;
 }
 .test{
-	width: 50%
+	width: 50%;
 }
 .newProduct{
 	text-align: right;
@@ -13,5 +13,16 @@
 	text-align: center;
 }
 .pages{
-	text-align: center
+	text-align: center;
+}
+.message{
+	text-align: center;
+}
+img{
+	height: 3.5rem;
+	width: 3.5rem;
+}
+
+td{
+	vertical-align: middle;
 }

@@ -1,24 +1,39 @@
 <div class="modal-header">
-  <h4 class="modal-title">ID {{data.id}}</h4>
+  <h4 *ngIf="edit" class="modal-title">Edit Product - ID {{data.id}}</h4>
+  <h4 *ngIf="!edit" class="modal-title">Add a new product</h4>
   <button type="button" class="close" aria-label="Close"
    (click)="activeModal.dismiss('Cross click')">
   </button>
 </div>
 <div class="modal-body">
-  <form>
-  	<p>Name: <input type="text" name="productName" [(ngModel)]="data.name"></p>
-  	<p>Description: <textarea rows="7" cols="50" name="productDescription" [(ngModel)]="data.description"></textarea></p>
+  <form enctype="multipart/form-data">
+  	<p>Name: <input type="text" name="productName" [(ngModel)]="name"></p>
+  	<p>Description: <textarea rows="4" cols="50" name="productDescription" [(ngModel)]="description"></textarea></p>
+  	<p>Price: $<input type="number" name="inventoryCount" [(ngModel)]="price"></p>
+  	<p>Inventory Count: <input type="number" name="inventoryCount" [(ngModel)]="count"></p>
   	<p>Categories: 
-  		<select name='category'>
-			<option value="Hat">Hat</option>
-			<option value="Shirt">Shirt</option>
-			<option value="Pants">Pants</option>
-			<option value="Shoes">Shoes</option>
-			<option value="Glasses">Glasses</option>
+  		<select name='category' [(ngModel)]="category">
+        <option value="">Select One</option>
+  			<option value="Hat">Hat</option>
+  			<option value="Shirt">Shirt</option>
+  			<option value="Pants">Pants</option>
+  			<option value="Shoes">Shoes</option>
+  			<option value="Glasses">Glasses</option>
 		</select>
 	</p>
-  	<p>Images: <button>Upload</button></p>
+  <p>Images: <input type="file" name="myImage" (change)="onFileChanged($event)"><button (click)="imageUpload()">Upload</button></p>
   </form>
+  <p>{{error}}</p>
+  <table class="imagesTable table">
+    <tr *ngFor="let image of displayedImages">
+        <td><img [src]="image.path"></td>
+        <td><p>{{image.name}}</p></td>
+        <td>
+          <button (click)="deleteImage(image)"><i class="fa fa-trash"></i></button>
+          <input type="checkbox" name="mainImage" class="checkbox" [checked]="mainImage == image.path" (change)="setMain(image.path)"> Main
+        </td>
+    </tr>
+  </table>
 </div>
 <div class="modal-footer">
   <button (click)="activeModal.dismiss('Close clicked')">
@@ -27,7 +42,10 @@
   <button>
   	Preview
   </button>
-  <button (click)="print()">
+  <button *ngIf="edit" (click)="updateProduct(data._id)">
   	Update
+  </button>
+  <button *ngIf="!edit" (click)="addProduct()">
+  	Add Item
   </button>
 </div>

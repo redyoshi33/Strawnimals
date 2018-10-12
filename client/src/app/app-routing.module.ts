@@ -5,9 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ShoworderComponent } from './showorder/showorder.component';
-import { ProductsComponent } from './products/products.component'
+import { ProductsComponent } from './products/products.component';
+import { StoreComponent } from './store/store.component';
 
 const routes: Routes = [
+	{ path: "store", component: StoreComponent},
 	{ path: "dashboard", component: DashboardComponent},
 	{ path: "dashboard/orders", component: OrdersComponent},
 	{ path: "dashboard/orders/:id", component: ShoworderComponent},

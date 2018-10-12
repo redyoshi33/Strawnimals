@@ -1,0 +1,58 @@
+<app-store-navbar></app-store-navbar>
+<div class="container">
+	<div class="row">
+		<div class="category col-md-3 col-sm-10">
+			<form (submit)="submitSearch()">
+				<input class="searchbar" type='text' name='search' [(ngModel)]="search" /><button class="searchButton" type="submit"><i class="fa fa-search"></i></button>
+			</form>
+			<h4>Categories</h4>
+			<ul>
+				<li><span class="link" (click)="setVariables()">Show All</span></li>
+				<li><span class="link" (click)="changeCategory('Hat')">Hat</span></li>
+				<li><span class="link" (click)="changeCategory('Shirt')">Shirt</span></li>
+				<li><span class="link" (click)="changeCategory('Pants')">Pants</span></li>
+				<li><span class="link" (click)="changeCategory('Shoes')">Shoes</span></li>
+				<li><span class="link" (click)="changeCategory('Glasses')">Glasses</span></li>
+			</ul>
+		</div>
+		<div class="right-side col-md-9 col-sm-10">
+			<div class="box">
+				<div class="top">
+					<div class="row">
+						<div class="title col-md-6 col-sm-10">
+							<h3>{{categoryType}}</h3>
+						</div>
+						<div class="filterPages col-md-6 col-sm-10">
+							<div class="topButtons">
+								<button (click)="changePages(0)">first</button>
+								<button (click)="changePages(currentPage-2)"><</button>
+								<p>{{currentPage}}</p>
+								<button (click)="changePages(currentPage)">></button>
+								<button (click)="changePages(pages.length-1)">last</button>
+							</div>
+							<select name='filter' class="filterDropDown" [(ngModel)]="filterid" (change)="filterBy()">
+								<option value="default">Default</option>
+							    <option value="popular">Most Popular</option>
+								<option value="name">Name (A-Z)</option>
+								<option value="price low">Price (low to high)</option>
+								<option value="price high">Price (high to low)</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="products">
+					<div *ngFor="let product of displayed" class="item">
+						<div class="image">
+							<img [src]="product.mainImage">
+							<p class="price">$ {{(product.price).toFixed(2)}}</p>
+						</div>
+						<p>{{product.name}}</p>
+					</div>
+				</div>
+				<div class='pages'>
+					<button *ngFor="let page of pages" (click)="changePages(page)">{{page+1}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

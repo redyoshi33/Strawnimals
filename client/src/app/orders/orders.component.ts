@@ -50,16 +50,16 @@ export class OrdersComponent implements OnInit {
 			this.filtered = temp
 			this.pages = this.createPages(temp)
 		}
-		if(this.searchid === 'name'){
-			temp = this.orders.filter( order => order.name == this.search)
+		else if(this.searchid === 'name'){
+			temp = this.orders.filter( order => order.name.startsWith(this.search))
 			this.searched = temp 
 			this.filtered = temp
 			this.pages = this.createPages(temp)
 		}
-		// if(this.state.searchid === 'date'){
+		// else if(this.state.searchid === 'date'){
 		// 	this.setState({data: this.state.orders.filter( order => order.date === moment(this.state.search).format('MM/DD/YYYY'))})
 		// }
-		if(this.searchid === 'default'){
+		else if(this.searchid === 'default'){
 			temp = this.orders
 			this.searched = temp 
 			this.filtered = temp
@@ -78,17 +78,17 @@ export class OrdersComponent implements OnInit {
 			this.filtered = temp
 			this.pages = this.createPages(temp)
 		}
-		if(this.filterstatus === 'inprocess'){
+		else if(this.filterstatus === 'inprocess'){
 			temp = this.searched.filter( order => order.status === 'Order in process')
 			this.filtered = temp
 			this.pages = this.createPages(temp)
 		}
-		if(this.filterstatus === 'shipped'){
+		else if(this.filterstatus === 'shipped'){
 			temp = this.searched.filter( order => order.status === 'Shipped')
 			this.filtered = temp
 			this.pages = this.createPages(temp)
 		}
-		if(this.filterstatus === 'cancel'){
+		else if(this.filterstatus === 'cancel'){
 			temp = this.searched.filter( order => order.status === 'Cancelled')
 			this.filtered = temp
 			this.pages = this.createPages(temp)

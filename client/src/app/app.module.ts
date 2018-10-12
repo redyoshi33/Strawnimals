@@ -15,6 +15,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ShoworderComponent } from './showorder/showorder.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductModalComponent } from './product-modal/product-modal.component';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { StoreNavbarComponent } from './store-navbar/store-navbar.component';
+import { StoreComponent } from './store/store.component';
+import { StoreProductComponent } from './store-product/store-product.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +30,14 @@ import { ProductModalComponent } from './product-modal/product-modal.component';
     NavbarComponent,
     ShoworderComponent,
     DashboardComponent,
-    ProductModalComponent
+    ProductModalComponent,
+    DeleteModalComponent,
+    StoreNavbarComponent,
+    StoreComponent,
+    StoreProductComponent,
+    CartComponent,
   ],
-  entryComponents: [ProductModalComponent],
+  entryComponents: [ProductModalComponent, DeleteModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
