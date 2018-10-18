@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+<nav class="navbar navbar-expand-lg navbar-light justify-content-center fixed-top">
+	<a class="navbar-brand">Dashboard</a>
 	<button
    		class="navbar-toggler"
 	    type="button"
@@ -10,16 +11,18 @@
 	    <span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse justify-content-between align-items-center w-100" id="navbarNavDropdown">
-	    <ul class="navbar-nav mx-auto text-center">
-	        <li class="nav-item">
-	            <a class="nav-link">Dashboard</a>
-	        </li>
+	    <ul class="navbar-nav text-center">
 	        <li class="nav-item">
             	<a class="nav-link" routerLink="/dashboard/orders">Orders</a>
 	        </li>
 	        <li class="nav-item">
 	            <a class="nav-link" routerLink="/dashboard/products">Products</a>
 	        </li>
+	    </ul>
+	    <ul class="navbar-nav text-center">
+	    	<li class="nav-item">
+	    		<a class="nav-link" (click)="logout()">Log Off</a>
+	    	</li>
 	    </ul>
 	</div>
 </nav>

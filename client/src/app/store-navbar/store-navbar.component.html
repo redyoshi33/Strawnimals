@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+<nav class="navbar navbar-expand-lg navbar-light justify-content-center fixed-top">
+	<a class="navbar-brand">Strawnimals</a>
 	<button
    		class="navbar-toggler"
 	    type="button"
@@ -9,13 +10,20 @@
 	    aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	</button>
+
 	<div class="collapse navbar-collapse justify-content-between align-items-center w-100" id="navbarNavDropdown">
-	    <ul class="navbar-nav mx-auto text-center">
-	        <li class="nav-item">
-	            <a class="nav-link">Strawnimals</a>
+		<ul class="navbar-nav text-center">
+			<li class="nav-item">
+	            <a class="nav-link" routerLink="/store">Store</a>
 	        </li>
-	        <li class="nav-item">
-	            <a class="nav-link" routerLink="">Cart</a>
+	    </ul>
+	    <ul class="navbar-nav mx-right text-center">
+	    	<li class="nav-item navbar-right">
+	            <a *ngIf="loggedIn" class="nav-link" (click)="logout()">Logout</a>
+	            <a *ngIf="!loggedIn" class="nav-link" routerLink="/login">Login</a>
+	        </li>
+	        <li class="nav-item navbar-right">
+	            <a class="nav-link" routerLink="/cart">Cart ( {{cart.length}} )</a>
 	        </li>
 	    </ul>
 	</div>

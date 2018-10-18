@@ -25,10 +25,10 @@ export class ProductModalComponent implements OnInit {
   displayedImages: any;
   mainImage: any;
   error: string;
+  
 
   ngOnInit() {
   	if(this.data){
-
   		this.name = this.data.name
   		this.description = this.data.description
   		this.category = this.data.category
@@ -63,15 +63,14 @@ export class ProductModalComponent implements OnInit {
       fd.append('myImage', this.image, this.image.name)
       let obs = this._httpservice.imageUpload(fd)
       obs.subscribe(data => {
-        if(data.err){
-          this.error = data.err.message
+        if(data['err']){
+          this.error = data['err']['message']
         }
         else{
-          console.log(data)
-          let imagetype = data.img.contentType
-          let base64 = Buffer.from(data.img.data).toString('base64')
+          let imagetype = data['img']['contentType']
+          let base64 = Buffer.from(data['img']['data']).toString('base64')
           let path = "data:"+imagetype+";base64,"+base64
-          this.displayedImages.push({path: path, name: data.name, id: data._id})
+          this.displayedImages.push({path: path, name: data['name'], id: data['_id']})
           if(!this.mainImage){
             this.mainImage = path
           }
@@ -101,7 +100,7 @@ export class ProductModalComponent implements OnInit {
       }
       let obs = this._httpservice.addProduct({id: ++this.lastID, name: this.name, description: this.description, category: this.category, count: this.count, price: this.price, images: this.displayedImages, mainImage: this.mainImage})
       obs.subscribe(data => {
-        if(data.err){
+        if(data['err']){
           console.log("Failed")
         }
         else{

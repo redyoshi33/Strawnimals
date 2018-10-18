@@ -1,0 +1,26 @@
+.wrapper{
+	background-color: #f7f7f7;
+}
+.container{
+	padding: 7rem 2rem 2rem;
+	color: #3a3a3a;
+	text-align: center;
+}
+.form{
+	margin: 2rem 0rem;
+}
+.label{
+	text-align: center;
+}
+.loginButton{
+	text-align: right;
+}
+.input{
+	text-align: left;
+}
+.message{
+	margin-top: 2rem;
+}
+input{
+	width: 100%
+}

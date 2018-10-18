@@ -1,3 +1,49 @@
-<p>
-  store-product works!
-</p>
+<app-store-navbar></app-store-navbar>
+<div class="wrapper">
+	<div *ngIf="loaded" class="container">
+		<button class="goBackButton" [routerLink]="['/store']">Go Back</button>
+		<div class="row" ngsReveal>
+			<div class="leftSide col-md-4 col-sm-12">
+				<img class="largeImage" [src]="mainImage">
+				<div class="row">
+					<div class="allImages">
+						<img *ngFor="let image of images" class="smallImage" [src]="image.path" (click)="switchImage(image.path)">
+					</div>	
+				</div>
+			</div>
+			<div class="rightSide col-md-8 col-sm-12">
+				<h2>{{name}}</h2>
+				<p>{{description}}</p>
+				<div class="orderProduct">
+					<h4>Price: $ {{price.toFixed(2)}}</h4>
+					<p *ngIf="inventory">{{inventory}} left in stock.</p>
+					<p *ngIf="!inventory">Item currently out of stock.</p>
+					<div *ngIf="inventory">
+						<p class="quantity">Quantity:</p>
+						<select name='amount' class="amountDropDown" [(ngModel)]="amount">
+							<option [ngValue]="1">1</option>
+							<option [ngValue]="2">2</option>
+							<option [ngValue]="3">3</option>
+							<option [ngValue]="4">4</option>
+							<option [ngValue]="5">5</option>
+						</select>
+						<button class="cartButton" (click)="addToCart()">Add to Cart</button>
+					</div>
+					<h5 [ngClass]="msgclass">{{message}}</h5>
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<h4 class="similarTitle">Similar Items</h4>
+			<div class="similarItems row">
+				<div *ngFor="let product of similar" class="item">
+					<div class="image"  ngsReveal>
+						<img [src]="product.mainImage" [routerLink]="['/store/show', product._id]" (click)="switchProduct(product)">
+						<p class="price">$ {{(product.price).toFixed(2)}}</p>
+					</div>
+					<a [routerLink]="['/store/show', product._id]" (click)="switchProduct(product)">{{product.name}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

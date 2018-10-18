@@ -4,6 +4,7 @@ import { HttpService } from '../http.service';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,8 @@ export class ProductsComponent implements OnInit {
   	private _route: ActivatedRoute,
 	private _router: Router,
 	private _httpservice: HttpService,
-	private modalService: NgbModal
+	private modalService: NgbModal,
+	private spinner: NgxSpinnerService,
 	) { }
 
   	products: any;
@@ -27,8 +29,16 @@ export class ProductsComponent implements OnInit {
 	message: string;
 	lastID: number;
 	modalReference: any;
+	session: any;
+	admin: any;
 
   	ngOnInit() {
+  		this.session = this._httpservice.checkSession()
+  		this.admin = this.session['admin']
+  		if(!this.admin){
+  			this._router.navigate(['/store'])
+  		}
+  		this.spinner.show()
   		this.fetchProducts()
   	}
 
@@ -36,13 +46,14 @@ export class ProductsComponent implements OnInit {
 	  	let obs = this._httpservice.getProducts()
 	  	obs.subscribe(data => {
 	  		this.products = data
-	  		if(data.length<1){
+	  		if(data['length']<1){
 	  			this.lastID = 0
 	  		}
 	  		else{
-	  			this.lastID = data[data.length-1]['id']
+	  			this.lastID = data[data['length']-1]['id']
 	  		}
 	  		this.setVariables()
+	  		this.spinner.hide()
 	  	})
     }
     setVariables(){
@@ -83,15 +94,11 @@ export class ProductsComponent implements OnInit {
 		this.displayed = this.createTable(this.searched, ind)
 	}
 	newModal(){
-		if(!this.lastID){
-
-		}
 		this.message = " "
 		this.modalReference = this.modalService.open(ProductModalComponent)
 	    this.modalReference.componentInstance.edit = false
 	    this.modalReference.componentInstance.lastID = this.lastID
 	    this.modalReference.result.then((result) => {
-	    	console.log(result);
 	    	if(result === 'Added'){
 	    		this.fetchProducts()
 	    		this.setVariables()
@@ -107,7 +114,6 @@ export class ProductsComponent implements OnInit {
 	    this.modalReference.componentInstance.data = product
 	    this.modalReference.componentInstance.edit = true
 	    this.modalReference.result.then((result) => {
-	    	console.log(result);
 	    	if(result === 'Update'){
 	    		this.fetchProducts()
 	    		this.setVariables()
@@ -115,9 +121,6 @@ export class ProductsComponent implements OnInit {
 	    	}
 	    }).catch((error) => {
 	    	console.log(error);
-	    	if(error === 0 || error === "Close clicked"){
-	    		console.log(product)
-	    	}
 	  	});
   	}
   	delteModal(id, name){
@@ -126,7 +129,6 @@ export class ProductsComponent implements OnInit {
   		this.modalReference.componentInstance.id = id
   		this.modalReference.componentInstance.name = name
   		this.modalReference.result.then((result) => {
-	    	console.log(result);
 	    	if(result === 'Deleted'){
 	    		this.fetchProducts()
 	    		this.setVariables()

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgsRevealModule } from 'ng-scrollreveal';
 
 import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
@@ -44,6 +46,8 @@ import { CartComponent } from './cart/cart.component';
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
+    NgxSpinnerModule,
+    NgsRevealModule.forRoot(),
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

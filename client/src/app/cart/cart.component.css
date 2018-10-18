@@ -1,0 +1,101 @@
+.wrapper{
+	background-color: #f7f7f7;
+}
+.container{
+	padding: 5rem 2rem 2rem;
+	color: #3a3a3a;
+}
+.link{
+    text-decoration: underline;
+    cursor: pointer;
+    color: black;
+}
+.table{
+	margin-top: 2rem;
+	table-layout: fixed;
+	text-align: center;
+	background-color: #ffffff;
+}
+.thead{
+	background-color: #FEDCD2;
+	color: #DF744A;
+	border: 2px solid #C0C0C0;
+}
+.thead th{
+	border-bottom: 0; 
+}
+.tbody{
+	border: 2px solid #C0C0C0
+}
+.wide{
+	width: 40%;
+}
+.totalPrice{
+	margin-top: 2rem;
+	margin-left: auto;
+	text-align: right;
+	border: 2px solid #C0C0C0;
+	background-color: #ffffff;
+	width: 30%;
+	padding: 1rem;
+	border-radius: 4px;
+}
+.message{
+	text-align: center;
+	margin-bottom: 2rem;
+	color: #DF744A;
+}
+.form{
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+.formInfo{
+	margin-top: 1rem;
+	border: 2px solid #C0C0C0;
+	background-color: #ffffff;
+	padding: 2rem;
+	border-radius: 4px;
+}
+.payment{
+	margin-top: 1rem;
+}
+.checkbox{
+	text-align: right;
+}
+.input{
+	width: 80%
+}
+.expiration{
+	margin-top: 1rem;
+}
+.pay{
+	text-align: right;
+	margin: 2rem 0rem;
+}
+.updateButton{
+	margin: 0rem 0.25rem;
+	background-color: #AFE7BB;
+	color: #ffffff;
+}
+.continueButton{
+	padding: 0.5rem 1rem;
+	background-color: #ffd86b;
+	color: #f9f9f9;
+}
+.payButton{
+	padding: 0.5rem 1rem;
+	background-color: #ffd86b;
+	color: #f9f9f9;
+}
+.cardexp{
+	width: 30%
+}
+input{
+	border-radius: 4px;
+}
+button{
+	border-radius: 4px;
+	color: #3a3a3a;
+	background-color: #ffffff;
+	box-shadow: 1px 1px 1px #888888;
+}

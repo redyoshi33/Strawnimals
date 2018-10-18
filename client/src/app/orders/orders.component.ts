@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../http.service';
 
-var moment = require('moment')
-
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -25,9 +23,15 @@ export class OrdersComponent implements OnInit {
 	filterstatus: any;
 	search: any;
 	pages: any;
-
+	session: any;
+	admin: any;
 
     ngOnInit() {
+  		this.session = this._httpservice.checkSession()
+  		this.admin = this.session['admin']
+  		if(!this.admin){
+  			this._router.navigate(['/store'])
+  		}
   		this.fetchOrders()
   		this.searchid = "default"
   		this.filterstatus = "showall"
@@ -56,9 +60,12 @@ export class OrdersComponent implements OnInit {
 			this.filtered = temp
 			this.pages = this.createPages(temp)
 		}
-		// else if(this.state.searchid === 'date'){
-		// 	this.setState({data: this.state.orders.filter( order => order.date === moment(this.state.search).format('MM/DD/YYYY'))})
-		// }
+		else if(this.searchid === 'date'){
+			temp = this.orders.filter( order => order.date.startsWith(this.search))
+			this.searched = temp 
+			this.filtered = temp
+			this.pages = this.createPages(temp)
+		}
 		else if(this.searchid === 'default'){
 			temp = this.orders
 			this.searched = temp 
@@ -123,35 +130,22 @@ export class OrdersComponent implements OnInit {
 	changePages(ind){
 		this.displayed = this.createTable(this.filtered, ind)
 	}
-    formatDate(date){
-    	return moment(date).format('MM/DD/YYYY')
-    }
-    findTotal(arr){
-    	let total = 0
-		for(let i =0; i<arr.length; i++){
-			total += arr[i].price
-		}
-		return total.toFixed(2)
-    }
     updateStatus(id, event: any){
     	let status = {status: event.target.value}
     	let obs = this._httpservice.updateOrder(id, status)
 	  	obs.subscribe(data => {
 	  		this.orders.find((order, ind) => {
 	  			if(order._id === data['order']['_id']){
-	  				console.log("ORDERED")
 	  				this.orders[ind] = data['order']
 	  			}
 	  		})
 	  		this.searched.find((order, ind) => {
 	  			if(order._id === data['order']['_id']){
-	  				console.log("SEARCHED")
 	  				this.searched[ind] = data['order']
 	  			}
 	  		})
 	  		this.filtered.find((order, ind) => {
 	  			if(order._id === data['order']['_id']){
-	  				console.log("FILTERED")
 	  				this.filtered[ind] = data['order']
 	  			}
 	  		})

@@ -1,3 +1,193 @@
-<p>
-  cart works!
-</p>
+<app-store-navbar></app-store-navbar>
+<div class="wrapper">
+	<div class="container">
+		<table class='table table-hover'>
+			<thead class="thead">
+				<tr>
+					<th class="wide">Item</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+				<tr *ngFor="let order of cart">
+					<td><a class="link" [routerLink]="['/store/show/'+order.itemid]">{{order.itemname}}</a></td>
+					<td>${{order.price.toFixed(2)}}</td>
+					<td><button class="updateButton" (click)="updateItem(order,'-')">-</button> {{order.quantity}} <button class="updateButton" (click)="updateItem(order,'+')">+</button></td>
+					<td>${{totalOfItem(order)}}</td>
+					<td><button (click)="removeItem(order)"><i class="fa fa-trash"></i></button></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="totalPrice">
+			<p>Shipping: ${{shippingPrice.toFixed(2)}}</p>
+			<p>Total: ${{totalOrder.toFixed(2)}}</p>
+			<button class="continueButton" [routerLink]="['/store']">Continue Shopping</button>
+		</div>
+		<h4 *ngIf="message" class="message">{{message}}</h4>
+		<div class="formInfo row">
+			<div class="shippingInfo col-md-6 col-sm-12">
+				<h3>Shipping Info</h3>
+				<form class="form">
+					<div class="row">
+						<div class="col-sm-3">
+							<label>First Name: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipFname" [(ngModel)]="shipfname">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Last Name: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipLname" [(ngModel)]="shiplname">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Address: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipAddress" [(ngModel)]="shipaddress">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Address 2: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipAddress2" [(ngModel)]="shipaddress2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>City: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipCity" [(ngModel)]="shipcity">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>State: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipState" [(ngModel)]="shipstate">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Zipcode: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="shipZip" [(ngModel)]="shipzip">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Phone: </label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" name="phone" [(ngModel)]="phone" placeholder="Optional">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="billingInfo col-md-6 col-sm-12">
+				<h3>Billing Info</h3>
+				<p class="checkbox"><input type="checkbox" name="sameAs" (change)="sameShipping()"> Same as shipping info.</p>
+				<form class="form">
+					<div class="row">
+						<div class="col-sm-3">
+							<label>First Name: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billFname" [(ngModel)]="billfname">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Last Name: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billLname" [(ngModel)]="billlname">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Address: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billAddress" [(ngModel)]="billaddress">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Address 2: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billAddress2" [(ngModel)]="billaddress2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>City: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billCity" [(ngModel)]="billcity">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>State: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billState" [(ngModel)]="billstate">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Zipcode: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billZip" [(ngModel)]="billzip">
+						</div>
+					</div>
+					<div class="payment row">
+						<div class="col-sm-3">
+							<label>Card: </label>
+						</div>
+						<div class="col-sm-9">
+							<input class="input" type="text" name="billcard" [(ngModel)]="billcard">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label>Security Code: </label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" name="billsecruity" [(ngModel)]="billsecruity">
+						</div>
+					</div>
+					<div class="expiration row">
+						<div class="col-sm-3">
+							<label>Expiration: </label>
+						</div>
+						<div class="col-sm-9">
+							<input type="number" class="cardexp" name="monthexp" placeholder="(mm)" [(ngModel)]="monthexp">
+							/
+							<input type="number" class="cardexp" name="yearexp" placeholder="(year)" [(ngModel)]="yearexp">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="pay">
+			<button class="payButton" (click)="validateOrder()">Submit Order and Pay</button>
+		</div>
+	</div>
+</div>

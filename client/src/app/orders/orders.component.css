@@ -1,9 +1,16 @@
-.container{
-	padding-top: 2rem;
+.wrapper{
+	background-color: #f7f7f7;
 }
-.searchBar{
+.container{
+	padding: 5rem 0rem 2rem;
+	color: #3a3a3a;
+}
+.search{
 	text-align: left;
 	display: inline-block;
+}
+.searchBar{
+	border-radius: 4px;	
 }
 .reset{
 	text-align: left;
@@ -13,8 +20,23 @@
 	display: inline-block;
 }
 .table{
-	margin-top: 2rem;
+	margin-top: 1rem;
 	table-layout: fixed;
+	background-color: #ffffff;
+}
+.thead{
+	background-color: #FEDCD2;
+	color: #DF744A;
+	border: 2px solid #C0C0C0;
+}
+.thead th{
+	border-bottom: 0; 
+}
+.tbody{
+	border: 2px solid #C0C0C0;
+}
+.tbody tr{
+	cursor: pointer;
 }
 .medium{
 	width:20%;
@@ -25,6 +47,37 @@
 .pages{
 	text-align: center
 }
+.searchButton{
+	margin-left: 0.5rem;
+	background-color: #ffd86b;
+}
+.resetButton{
+	padding: 0.25rem 0.75rem;
+	background-color: #ffd86b;
+	color: #ffffff;
+}
+.pageButtons{
+	padding: 0.25rem 0rem;
+	width: 2rem;
+	background-color: #AFE7BB;
+	color: #ffffff;
+}
+a{
+	color: #3a3a3a;
+}
+select{
+	background-color: #ffffff;
+	color: #3a3a3a;
+}
+table{
+	border: 2px solid white;
+}
 th, td{
 	text-align: center;
+}
+button{
+	cursor: pointer;
+	border-radius: 4px;
+	color: #3a3a3a;
+	background-color: #ffffff;
 }

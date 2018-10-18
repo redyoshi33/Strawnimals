@@ -1,28 +1,28 @@
 <app-navbar></app-navbar>
-
-<div class="container">
-    <div class='row'>
-		<form class='searchBar col-md-6' (submit)="submitSearch()">
-			<select name='searchcondition' [(ngModel)]="searchid">
-			    <option value="default">Search by</option>
-			    <option value="id">ID</option>
-				<option value="name">Name</option>
-				<option value="date">Date</option>
-			</select>
-			<input type='text' name='search' [(ngModel)]="search" /><button type="submit"><i class="fa fa-search"></i></button>
-		</form>
-		<div class='dropDown col-md-6'>	
-			<select name='status' [(ngModel)]="filterstatus" (change)="filterStatus()">
-			    <option value="showall">Show All</option>
-				<option value="inprocess">Order in Process</option>
-				<option value="shipped">Shipped</option>
-				<option value="cancel">Cancelled</option>
-			</select>
+<div class="wrapper">
+	<div class="container">
+	    <div class='row'>
+			<form class='search col-md-6' (submit)="submitSearch()">
+				<select name='searchcondition' [(ngModel)]="searchid">
+			    	<option value="default">Search by</option>
+				    <option value="id">ID</option>
+					<option value="name">Name</option>
+					<option value="date">Date</option>
+				</select>
+				<input class="searchBar" type='text' name='searchBar' [(ngModel)]="search" /><button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+			</form>
+			<div class='dropDown col-md-6'>	
+				<select name='status' [(ngModel)]="filterstatus" (change)="filterStatus()">
+				    <option value="showall">Show All</option>
+					<option value="inprocess">Order in Process</option>
+					<option value="shipped">Shipped</option>
+					<option value="cancel">Cancelled</option>
+				</select>
+			</div>
 		</div>
-	</div>
-	<div class="reset"><button (click)="resetforms()">Reset</button></div>
-		<table class='table table-striped'>
-		    <thead>
+		<div class="reset"><button class="resetButton" (click)="resetforms()">Reset</button></div>
+		<table class='table table-hover'>
+		    <thead class="thead">
 				<tr>
 					<th>Order ID</th>
 					<th>Name</th>
@@ -32,13 +32,13 @@
 					<th class='medium'>Status</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr *ngFor="let order of displayed">
+			<tbody class="tbody">
+				<tr *ngFor="let order of displayed" [routerLink]="[order._id]">
 					<td><a [routerLink]="[order._id]">{{order.id}}</a></td>
 					<td>{{order.name}}</td>
-					<td>{{formatDate(order.date)}}</td>
-					<td>{{order.billing}}</td>
-					<td>${{findTotal(order.items)}}</td>
+					<td>{{order.date}}</td>
+					<td>{{order.billing.address}} {{order.billing.city}}, {{order.billing.state}} {{order.billing.zip}}</td>
+					<td>${{order.total.toFixed(2)}}</td>
 					<td>
 						<select name="orderStatus" (change)="updateStatus(order._id, $event)">
 							<option value="Shipped" [selected]="order.status==='Shipped'">Shipped</option>
@@ -50,6 +50,7 @@
 			</tbody>
 		</table>
 		<div class='pages'>
-			<button *ngFor="let page of pages" (click)="changePages(page)">{{page+1}}</button>
+			<button *ngFor="let page of pages" class="pageButtons" (click)="changePages(page)">{{page+1}}</button>
 		</div>
+	</div>
 </div>

@@ -11,8 +11,8 @@ export class ShoworderComponent implements OnInit {
 
   constructor(
   	private _route: ActivatedRoute,
-	private _router: Router,
-	private _httpservice: HttpService,
+	  private _router: Router,
+	  private _httpservice: HttpService,
 	) { }
 
   id: any;
@@ -22,11 +22,18 @@ export class ShoworderComponent implements OnInit {
   shipping: any;
   background: any;
   myStyle: any;
+  session: any;
+  admin: any;
 
   ngOnInit() {
+    this.session = this._httpservice.checkSession()
+    this.admin = this.session['admin']
+    if(!this.admin){
+      this._router.navigate(['/store'])
+    }
   	this._route.params.subscribe((params: Params) => this.id = params['id'])
   	this.fetchOrder(this.id)
-  	this.shipping = 3.33;
+  	
   }
   fetchOrder(id){
   	let obs = this._httpservice.getOrder(id)
@@ -34,8 +41,8 @@ export class ShoworderComponent implements OnInit {
 	  		this.order = data
 	  		this.items = data['items']
 	  		this.subtotal = this.findSubTotal(this.items)
+        this.shipping = data['shippingPrice'];
 	  		this.getStyles()
-	  		console.log(this.myStyle)
 	  })
   }
   findSubTotal(items){
@@ -46,15 +53,14 @@ export class ShoworderComponent implements OnInit {
   	return total
   }
   getStyles(){
-  	console.log(this.order.status)
   	if(this.order.status === "Shipped"){
-  		this.background = "#1DA462"
+  		this.background = "#AFE7BB"
   	}
   	else if(this.order.status === "Order in process"){
-  		this.background = "#FFCD46"
+  		this.background = "#ffd86b"
   	}
   	else if(this.order.status === "Cancelled"){
-  		this.background = "#DD5144"
+  		this.background = "#FEDCD2"
   	}
   	this.myStyle = {'background': this.background }
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../http.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-store',
@@ -13,8 +14,10 @@ export class StoreComponent implements OnInit {
   	private _route: ActivatedRoute,
 	private _router: Router,
 	private _httpservice: HttpService,
+	private spinner: NgxSpinnerService,
   ) { }
 
+    loggedIn: any;
     products: any;
     category: any;
 	searched: any;
@@ -25,7 +28,16 @@ export class StoreComponent implements OnInit {
 	currentPage: number;
 	filterid: string;
 
+	activeAll: boolean;
+	activeHat: boolean;
+	activeShirt: boolean;
+	activePants: boolean;
+	activeShoes: boolean;
+	activeGlasses: boolean;
+
     ngOnInit() {
+    	this.spinner.show()
+        this.loggedIn = this._httpservice.checkSession()
   		this.fetchProducts()
     }
     fetchProducts(){
@@ -33,11 +45,10 @@ export class StoreComponent implements OnInit {
 	  	obs.subscribe(data => {
 	  		this.products = data
 	  		this.setVariables()
-	  		console.log(this.products)
+	  		this.spinner.hide()
 	  	})
     }
     setVariables(){
-    	console.log(this.products)
     	this.search = ""
     	this.filterid = "default"
     	this.searched = [...this.products]
@@ -46,17 +57,32 @@ export class StoreComponent implements OnInit {
 	  	this.pages = this.createPages(this.products)
 	  	this.currentPage = 1
 	  	this.categoryType = "All Products"
+	  	this.activeAll = true
 	  	
     }
     changeCategory(value){
-    	this.search = ""
-    	this.filterid = "default"
-    	let temp = this.products.filter( product => product.category === value)
-    	this.category = temp
-		this.searched = temp
-		this.pages = this.createPages(temp)
-		temp = this.createTable(temp, 0)
-		this.displayed = temp
+    	if(value === "All"){
+    		this.setVariables()
+    	}
+    	else{
+    		this.search = ""
+	    	this.filterid = "default"
+	    	let temp = this.products.filter( product => product.category === value)
+	    	this.category = temp
+			this.searched = temp
+			this.pages = this.createPages(temp)
+			temp = this.createTable(temp, 0)
+			this.displayed = temp
+    	}
+    	this.activeSwitch(value)
+    }
+    activeSwitch(value){
+    	this.activeAll = value === "All" ? true : false
+    	this.activeHat = value === "Hat" ? true : false
+    	this.activeShirt = value === "Shirt" ? true : false
+    	this.activePants = value === "Pants" ? true : false
+    	this.activeShoes = value === "Shoes" ? true : false
+    	this.activeGlasses = value === "Glasses" ? true : false
     }
     submitSearch(){
     	if(!this.search){
@@ -73,35 +99,33 @@ export class StoreComponent implements OnInit {
 		event.preventDefault()
     }
     filterBy(){
-    	console.log(this.filterid)
     	if(this.filterid === "default"){
-    		this.searched.sort((a,b) => 
-    			a.id < b.id ? -1 : 1;
-    		)
+    		this.searched.sort(function(a,b){
+    			return a.id < b.id ? -1 : 1;
+    		})
     	}
     	else if(this.filterid === "popular"){
-    		this.searched.sort((a,b) => 
-    			a.sold < b.sold ? -1 : 1;
-    		)
+    		this.searched.sort(function(a,b){
+    			return a.sold > b.sold ? -1 : 1;
+    		})
     	}
     	else if(this.filterid === "name"){
-    		this.searched.sort((a,b) => 
-    			a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
-    		)
+    		this.searched.sort(function(a,b){
+    			return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
+    		})
     	}
     	else if(this.filterid === "price low"){
-    		this.searched.sort((a,b) => 
-    			a.price < b.price ? -1 : 1;
-    		)
+    		this.searched.sort(function(a,b){
+    			return a.price < b.price ? -1 : 1;
+    		})
     	}
     	else if(this.filterid === "price high"){
-    		this.searched.sort((a,b) => 
-    			a.price > b.price ? -1 : 1;
-    		)
+    		this.searched.sort(function(a,b){
+    			return a.price > b.price ? -1 : 1;
+    		})
     	}
     	this.displayed = this.createTable(this.searched, 0)
     	this.currentPage = 1
-
     }
     createTable(data, index){
 		let table = []

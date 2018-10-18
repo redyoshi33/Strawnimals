@@ -1,9 +1,6 @@
 <div class="modal-header">
   <h4 *ngIf="edit" class="modal-title">Edit Product - ID {{data.id}}</h4>
   <h4 *ngIf="!edit" class="modal-title">Add a new product</h4>
-  <button type="button" class="close" aria-label="Close"
-   (click)="activeModal.dismiss('Cross click')">
-  </button>
 </div>
 <div class="modal-body">
   <form enctype="multipart/form-data">
@@ -21,7 +18,7 @@
   			<option value="Glasses">Glasses</option>
 		</select>
 	</p>
-  <p>Images: <input type="file" name="myImage" (change)="onFileChanged($event)"><button (click)="imageUpload()">Upload</button></p>
+  <p>Images: <input type="file" name="myImage" (change)="onFileChanged($event)"><button class="actionButton" (click)="imageUpload()">Upload</button></p>
   </form>
   <p>{{error}}</p>
   <table class="imagesTable table">
@@ -36,16 +33,13 @@
   </table>
 </div>
 <div class="modal-footer">
-  <button (click)="activeModal.dismiss('Close clicked')">
+  <button class="actionButton" (click)="activeModal.dismiss('Close clicked')">
     Cancel
   </button>
-  <button>
-  	Preview
-  </button>
-  <button *ngIf="edit" (click)="updateProduct(data._id)">
+  <button *ngIf="edit" class="actionButton" (click)="updateProduct(data._id)">
   	Update
   </button>
-  <button *ngIf="!edit" (click)="addProduct()">
+  <button *ngIf="!edit" class="actionButton" (click)="addProduct()">
   	Add Item
   </button>
 </div>

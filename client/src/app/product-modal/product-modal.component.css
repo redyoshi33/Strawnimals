@@ -1,3 +1,12 @@
+.modal-header{
+	color: #3a3a3a;
+}
+.modal-body{
+	color: #3a3a3a;
+}
+.modal-footer{
+	color: #3a3a3a;
+}
 .imagesTable{
 	table-layout: fixed;
 }
@@ -8,8 +17,21 @@
 	margin: 0rem;
 	vertical-align: middle;
 }
+.actionButton{
+	background-color: #AFE7BB;
+	color: #ffffff;
+}
 img {
 	height: 4rem;
 	width: 4rem;
 	vertical-align: middle;
+}
+select{
+	background-color: #ffffff;
+}
+button{
+	cursor: pointer;
+	border-radius: 4px;
+	color: #3a3a3a;
+	background-color: #ffffff;
 }

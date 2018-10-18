@@ -1,19 +1,54 @@
-.container{
-	padding-top: 2rem;
+.wrapper{
+	background-color: #f7f7f7;
 }
-.test{
-	width: 50%;
+.container{
+	padding: 5rem 0rem 2rem;
+	color: #3a3a3a;
+}
+.searchBar{
+	border-radius: 4px;	
 }
 .newProduct{
 	text-align: right;
 }
 .table{
-	margin-top: 2rem;
-	table-layout: fixed;
+	margin-top: 1rem;
 	text-align: center;
+	table-layout: fixed;
+	background-color: #ffffff;
+}
+.thead{
+	background-color: #FEDCD2;
+	color: #DF744A;
+	border: 2px solid #C0C0C0;
+}
+.thead th{
+	border-bottom: 0; 
+}
+.tbody{
+	border: 2px solid #C0C0C0;
 }
 .pages{
 	text-align: center;
+}
+.searchButton{
+	margin-left: 0.5rem;
+}
+.addButton{
+	padding: 0.25rem 0.75rem;
+	background-color: #AFE7BB;
+	color: #ffffff;
+}
+.editButton{
+	padding: 0.25rem 0.75rem;
+	background-color: #ffd86b;
+	color: #ffffff;
+}
+.pageButtons{
+	padding: 0.25rem 0rem;
+	width: 2rem;
+	background-color: #AFE7BB;
+	color: #ffffff;
 }
 .message{
 	text-align: center;
@@ -22,7 +57,20 @@ img{
 	height: 3.5rem;
 	width: 3.5rem;
 }
-
-td{
+select{
+	background-color: #ffffff;
+	color: #3a3a3a;
+}
+table{
+	border: 2px solid white;
+}
+th, td{
+	text-align: center;
 	vertical-align: middle;
+}
+button{
+	cursor: pointer;
+	border-radius: 4px;
+	color: #3a3a3a;
+	background-color: #ffffff;
 }
