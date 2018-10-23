@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../http.service';
-
-import { NgsRevealModule } from 'ng-scrollreveal';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { PicturemodalComponent } from '../picturemodal/picturemodal.component';
 
 @Component({
   selector: 'app-store-product',
@@ -15,6 +15,7 @@ export class StoreProductComponent implements OnInit {
   	private _route: ActivatedRoute,
 	  private _router: Router,
 	  private _httpservice: HttpService,
+    private modalService: NgbModal,
   	) { }
 
   id: any;
@@ -34,6 +35,7 @@ export class StoreProductComponent implements OnInit {
   cart: any;
   message: string;
   msgclass: string;
+  modalReference: any;
 
   ngOnInit() {
     this.loaded = false
@@ -58,14 +60,28 @@ export class StoreProductComponent implements OnInit {
   fetchSimilar(category){
   	let obs = this._httpservice.getSimilar(category)
 	  	obs.subscribe(data => {
-	  		this.similar = [...data]
+        console.log(data)
+	  		this.similar = data
 	  		let index = data.findIndex(product => product.name === this.product.name)
 	  		this.similar.splice(index, 1)
-	  		this.similar.slice(0,5)
+	  		this.similar = this.similar.slice(0,5)
+        console.log(this.similar)
 	  })
   }
   switchImage(image){
   	this.mainImage = image
+  }
+  pictureModal(){
+    this.message = " "
+    this.modalReference = this.modalService.open(PicturemodalComponent, { windowClass : "myCustomModalClass"})
+    this.modalReference.componentInstance.image = this.mainImage
+    this.modalReference.result.then((result) => {
+        if(result === 'Closed'){
+          console.log('Closed')
+        }
+      }).catch((error) => {
+        console.log(error);
+      });
   }
   switchProduct(product){
     this.setVariables(product)

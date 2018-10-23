@@ -2,3 +2,6 @@
 html{
 	background-color: #f7f7f7;
 }
+.myCustomModalClass .modal-dialog {
+  max-width: 40rem;
+}

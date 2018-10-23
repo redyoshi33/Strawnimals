@@ -35,8 +35,9 @@
 .tbody{
 	border: 2px solid #C0C0C0;
 }
-.tbody tr{
+.tbody td {
 	cursor: pointer;
+	outline: none;
 }
 .medium{
 	width:20%;
@@ -80,4 +81,5 @@ button{
 	border-radius: 4px;
 	color: #3a3a3a;
 	background-color: #ffffff;
+	outline: none;
 }

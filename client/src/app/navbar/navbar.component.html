@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light justify-content-center fixed-top">
-	<a class="navbar-brand">Dashboard</a>
+	<a class="navbar-brand" [ngx-scroll-to]="'#header-img'" routerLink="/">Strawnimals</a>
 	<button
    		class="navbar-toggler"
 	    type="button"
@@ -10,19 +10,37 @@
 	    aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	</button>
+
 	<div class="collapse navbar-collapse justify-content-between align-items-center w-100" id="navbarNavDropdown">
-	    <ul class="navbar-nav text-center">
-	        <li class="nav-item">
-            	<a class="nav-link" routerLink="/dashboard/orders">Orders</a>
+		<ul class="navbar-nav text-center">
+			<li class="nav-item">
+	            <a class="nav-link" routerLink="/store">Store</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" routerLink="/dashboard/products">Products</a>
+	            <a class="nav-link" routerLink="/" [ngx-scroll-to]="'#about'" [ngx-scroll-to-offset]="-300" >About</a>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" routerLink="/" [ngx-scroll-to]="'#mission'" [ngx-scroll-to-offset]="-300">Mission</a>
+	        </li>
+	        <li *ngIf="admin" class="nav-item">
+            	<a class="nav-link" routerLink="/orders">Orders</a>
+	        </li>
+	        <li *ngIf="admin" class="nav-item">
+	            <a class="nav-link" routerLink="/products">Products</a>
 	        </li>
 	    </ul>
-	    <ul class="navbar-nav text-center">
-	    	<li class="nav-item">
-	    		<a class="nav-link" (click)="logout()">Log Off</a>
-	    	</li>
+	    <ul class="navbar-nav mx-right text-center">
+	    	<li *ngIf="!admin && loggedIn"class="nav-item">
+	            <a class="nav-link" routerLink="/account">My Account</a>
+	        </li>
+	    	<li class="nav-item navbar-right">
+	            <a *ngIf="loggedIn" class="nav-link" (click)="logout()">Logout</a>
+	            <a *ngIf="!loggedIn" class="nav-link" routerLink="/login">Login</a>
+	        </li>
+	        <li class="nav-item navbar-right">
+	            <a class="nav-link" routerLink="/cart" [ngx-scroll-to]="'#wrapper'">Cart ( {{cart.length}} )</a>
+	        </li>
 	    </ul>
 	</div>
 </nav>
+

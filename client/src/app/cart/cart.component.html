@@ -1,5 +1,4 @@
-<app-store-navbar></app-store-navbar>
-<div class="wrapper">
+<div id="wrapper">
 	<div class="container">
 		<table class='table table-hover'>
 			<thead class="thead">
@@ -13,7 +12,7 @@
 			</thead>
 			<tbody class="tbody">
 				<tr *ngFor="let order of cart">
-					<td><a class="link" [routerLink]="['/store/show/'+order.itemid]">{{order.itemname}}</a></td>
+					<td><a class="link" [routerLink]="['/store/show/'+order.id]">{{order.itemname}}</a></td>
 					<td>${{order.price.toFixed(2)}}</td>
 					<td><button class="updateButton" (click)="updateItem(order,'-')">-</button> {{order.quantity}} <button class="updateButton" (click)="updateItem(order,'+')">+</button></td>
 					<td>${{totalOfItem(order)}}</td>
@@ -26,7 +25,6 @@
 			<p>Total: ${{totalOrder.toFixed(2)}}</p>
 			<button class="continueButton" [routerLink]="['/store']">Continue Shopping</button>
 		</div>
-		<h4 *ngIf="message" class="message">{{message}}</h4>
 		<div class="formInfo row">
 			<div class="shippingInfo col-md-6 col-sm-12">
 				<h3>Shipping Info</h3>
@@ -185,6 +183,7 @@
 					</div>
 				</form>
 			</div>
+			<h4 *ngIf="message" class="message col-sm-12">{{message}}</h4>
 		</div>
 		<div class="pay">
 			<button class="payButton" (click)="validateOrder()">Submit Order and Pay</button>

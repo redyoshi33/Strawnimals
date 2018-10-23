@@ -66,12 +66,15 @@ export class ProductsComponent implements OnInit {
     		this.setVariables()
     	}
     	else{
-    		let temp = []
-			temp = this.products.filter( product => product.name == this.search)
-			this.searched = temp 
-			this.pages = this.createPages(temp)
-			temp = this.createTable(temp, 0)
-			this.displayed = temp
+    		let rgx = new RegExp('^[a-zA-Z0-9_.-]*$')
+            if(rgx.test(this.search)){
+                let regex = new RegExp('.*'+this.search+'.*')
+                let temp = this.products.filter( product => regex.test(product.name) || regex.test(product.name.toLowerCase()))
+                this.searched = temp 
+                this.pages = this.createPages(temp)
+                temp = this.createTable(temp, 0)
+                this.displayed = temp
+            }
     	}
 		event.preventDefault()
     }

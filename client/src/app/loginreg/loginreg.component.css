@@ -6,6 +6,12 @@
 	color: #3a3a3a;
 	text-align: center;
 }
+.loginreg{
+	background-color: #ffffff;
+	padding: 1rem;
+	border: 2px solid #C0C0C0;
+	border-radius: 4px
+}
 .form{
 	margin: 2rem 0rem;
 }
@@ -20,7 +26,16 @@
 }
 .message{
 	margin-top: 2rem;
+	color: #DF744A;
 }
 input{
 	width: 100%
+}
+button{
+	padding: 0.25rem 0.75rem;
+	background-color: #AFE7BB;
+	color: #ffffff;
+	cursor: pointer;
+	border-radius: 4px;
+	outline: none;
 }

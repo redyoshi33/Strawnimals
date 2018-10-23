@@ -1,0 +1,77 @@
+<div class="wrapper">
+	<div id='header-img'>
+		<h1 class='title' ngsReveal>Strawnimals</h1>
+		<div class='subtitle' ngsReveal>
+			<p>The art and beauty of recycling</p>
+			<a class="storeLink" [routerLink]="['/store']">Go to Store</a>
+			<p class="disclaimer">*Disclaimer: This site is ONLY a demo site to showcase my programming skills. It has the functionality of an e-commerce site, but you won't actually be buying anything.</p>
+		</div>
+	</div>
+	<div id="carousel" ngsReveal>
+		<ngb-carousel>
+		  <ng-template ngbSlide>
+		    <div class="slide row">
+		        <div *ngFor="let product of firstSlide" class="product col-md-4">
+					<div class="product-image">
+						<img [src]="product.mainImage" [routerLink]="['/store/show', product._id]">
+					</div>
+				</div>
+		    </div>
+		  </ng-template>
+		  <ng-template ngbSlide>
+		    <div class="slide row">
+		        <div *ngFor="let product of secondSlide" class="product  col-md-4">
+					<div class="product-image">
+						<img [src]="product.mainImage" [routerLink]="['/store/show', product._id]">
+					</div>
+				</div>
+		    </div>
+		  </ng-template>
+		  <ng-template ngbSlide>
+		    <div class="slide row">
+		        <div *ngFor="let product of thirdSlide" class="product col-md-4">
+					<div class="product-image">
+						<img [src]="product.mainImage" [routerLink]="['/store/show', product._id]">
+					</div>
+				</div>
+		    </div>
+		  </ng-template>
+		</ngb-carousel>
+	</div>
+	<div id="about-img">
+		<h3 ngsReveal>About Strawnimals</h3>
+	</div>
+	<div id="about">
+		<p class="aboutBody" ngsReveal>
+			Strawnimals is a fun hobby I started at the end of my senior year of high school. The colorful straws I got with my boba drinks always felt like such a waste to throw away, so I wanted to do something with them. Starting from making small animal designs from straw art books, I wanted to expand my creativity and began creating my own designs. Several of the boba strawnimal models on this shop are my own creations. The Strawnimal figures are all made PURELY with straws. After all, if glue or tape was used, it wouldn't be as interesting, right? 
+		</p>
+	</div>
+	<div id="mission-img">
+		<h3 ngsReveal>My Mission</h3>
+	</div>
+	<div id="mission">
+		<p class="aboutBody" ngsReveal>
+			I want to recycle straws and spread awareness of the environmental impacts that plastic straws have. Plastic straws poorly impact the environment due to their single use applications and plastic composition. They are not easily recyclable and can harm a lot of marine animals if they are ingested. After using my straws, I clean and wash them to turn into strawnimals as a means to recycle them and all proceeds made in the shop are donated to environmental groups that are actively solving this problem. While only a couple of straws may not have much of an effect in the long run, it's a start to at least spread awareness. Consider using reuseable straws as an alternative to drinks, so we can solve this problem together. The day I have no more straws to make Strawnimals, will certainly be a day to celebrate!
+		</p>
+		<div class="links" ngsReveal>
+			<p>Check out the links below to learn more about what you can do to help!</p>
+			<ul>
+				<li><a href="https://thelastplasticstraw.org/" target="_blank">The Last Plastic Straw</a></li>
+				<li>
+					Buy Reuseable 
+					<a href="https://www.amazon.com/gp/search/ref=a9_asi_1?rh=i%3Aaps%2Ck%3Areusable+straws&keywords=reusable+straws&ie=UTF8&qid=1540238942" target="_blank">Straws</a> 
+					and 
+					<a href="https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=reusable+boba+straws&rh=i%3Aaps%2Ck%3Areusable+boba+straws" target="_blank">Boba Straws</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="contact">
+		<h1 class="contactTitle">Contact</h1>
+		<p>If you have any inquiries or any idea suggestions for strawnimals, you can reach me at:</p>
+		<a class="email" href="mailto:strawnimals.info@gmail.com">
+			<i class="fas fa-envelope"></i>
+			<p>strawnimals.info@gmail.com</p>
+		</a>
+	</div>
+</div>
+

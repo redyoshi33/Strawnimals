@@ -7,6 +7,9 @@
 .modal-footer{
 	color: #3a3a3a;
 }
+.description{
+	text-align: center;
+}
 .imagesTable{
 	table-layout: fixed;
 }
@@ -34,4 +37,5 @@ button{
 	border-radius: 4px;
 	color: #3a3a3a;
 	background-color: #ffffff;
+	outline: none;
 }

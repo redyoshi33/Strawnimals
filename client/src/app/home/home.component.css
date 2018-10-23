@@ -1,0 +1,158 @@
+.wrapper{
+	margin: 0rem;
+	padding: 0rem;
+	color: #3a3a3a;
+	height: 100%;
+ 	max-width: 100%;
+}
+#header-img { 
+	color: #ffffff;
+	background: linear-gradient(rgba(20,20,20, .3), rgba(20,20,20, .3)), url('/assets/Header.jpg');
+	max-width: 100%;
+	height: 650px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 14rem;
+    text-align: center;
+}
+#carousel{
+	padding: 2rem 0.5rem;
+	background-color: #AFE7BB;
+	min-height: 370px;
+}
+.carousel{
+	outline: none !important;
+}
+.carousel-title{
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	text-align: center;
+	color: #ffffff;
+}
+.carousel-control-next{
+	width: 5%;
+	opacity: 1;
+}
+.carousel-control-prev{
+	width: 5%;
+	opacity: 1;
+}
+.carousel-indicators{
+	bottom: -2rem;
+	opacity: 1;
+}
+.slide{
+	text-align: center;
+	justify-content: center;
+	
+}
+.title{
+	color: #ffffff;
+	font-size: 4.5rem;
+}
+.subtitle{
+	margin-top: 5rem;
+	font-size: 2rem;
+	font-weight: lighter;
+}
+.storeLink{
+	font-size: 1.5rem;
+	margin-top: 2rem;
+	color: #ffffff;
+}
+.disclaimer{
+	margin-top: 3rem;
+	font-size: 0.75rem;
+}
+.storeLink:hover{
+	color: #ffffff;
+	text-decoration: underline;
+}
+.product a{
+	color: #ffffff;
+	font-size: 1.25rem;
+	font-weight: lighter;
+}
+.product-image img{
+	height: 17rem;
+	width: 17rem;
+	margin-bottom: 1rem;
+	border: 4px solid #ffffff;
+	outline: none;
+}
+.product-image img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+#about-img { 
+	color: #ffffff;
+	background: linear-gradient(rgba(20,20,20, .3), rgba(20,20,20, .3)), url('/assets/About.jpg');
+	max-width: 100%;
+	height: 15rem;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5.5rem;
+    text-align: center;
+}
+#about-img h3{
+	font-size: 3rem;
+}
+#about{
+	padding: 3rem 3.5rem 0rem;
+}
+.aboutTitle{
+	font-size: 1.5rem;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+.aboutBody{
+	font-size: 1.35rem;
+	font-weight: lighter;
+	margin-bottom: 4rem;
+}
+#mission-img{
+	color: #ffffff;
+	background: linear-gradient(rgba(20,20,20, .3), rgba(20,20,20, .3)), url('/assets/Mission.jpg');
+	max-width: 100%;
+	height: 15rem;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5.5rem;
+    text-align: center;
+}
+#mission-img h3{
+	font-size: 3rem;
+}
+#mission{
+	padding: 3rem;
+}
+.links{
+	font-size: 1.2rem;
+}
+.links a{
+	color: #3a3a3a;
+	text-decoration: underline;
+}
+#contact{
+	background-color: #AFE7BB;
+	color:#ffffff;
+	text-align: center;
+	padding: 2rem;
+	font-size: 1.3rem;
+	font-weight: lighter;
+}
+.contactTitle{
+	margin-bottom: 0.5rem;
+}
+.email{
+	color: #ffffff;
+}
+.email:hover{
+	color: #ffffff;
+}

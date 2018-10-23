@@ -2,7 +2,7 @@
 	background-color: #f7f7f7;
 }
 .container{
-	padding: 5rem 0rem 2rem;
+	padding: 5rem 2rem 2rem;
 	color: #3a3a3a;
 }
 .goBackButton{
@@ -21,6 +21,8 @@
 	margin-bottom: 2rem;
 	border: 5px solid #ffffff;
 	border-radius: 4px;
+	cursor: pointer;
+	background-color: #ffffff;
 }
 .allImages{
 	text-align: center;
@@ -32,6 +34,8 @@
 	margin: 0rem 0.5rem 2rem;
 	border: 3px solid #ffffff;
 	border-radius: 4px;
+	cursor: pointer;
+	background-color: #ffffff;
 }
 .smallImage:hover{
 	opacity: 0.7;
@@ -104,8 +108,8 @@
 .item img{
 	height: 10rem;
 	width: 10rem;
-	border: 4px solid #ffffff;
-	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
 }
 .item img:hover {
     opacity: 0.7;
@@ -126,7 +130,6 @@ select{
 button{
 	cursor: pointer;
 	border-radius: 4px;
-	color: #3a3a3a;
-	background-color: #ffffff;
+	outline: none;
 }
 

@@ -29,11 +29,9 @@ export class StoreComponent implements OnInit {
 	filterid: string;
 
 	activeAll: boolean;
-	activeHat: boolean;
-	activeShirt: boolean;
-	activePants: boolean;
-	activeShoes: boolean;
-	activeGlasses: boolean;
+	activeSmall: boolean;
+	activeBoba: boolean;
+	activeModels: boolean;
 
     ngOnInit() {
     	this.spinner.show()
@@ -70,6 +68,7 @@ export class StoreComponent implements OnInit {
 	    	let temp = this.products.filter( product => product.category === value)
 	    	this.category = temp
 			this.searched = temp
+            this.currentPage = 1
 			this.pages = this.createPages(temp)
 			temp = this.createTable(temp, 0)
 			this.displayed = temp
@@ -78,25 +77,27 @@ export class StoreComponent implements OnInit {
     }
     activeSwitch(value){
     	this.activeAll = value === "All" ? true : false
-    	this.activeHat = value === "Hat" ? true : false
-    	this.activeShirt = value === "Shirt" ? true : false
-    	this.activePants = value === "Pants" ? true : false
-    	this.activeShoes = value === "Shoes" ? true : false
-    	this.activeGlasses = value === "Glasses" ? true : false
+    	this.activeSmall = value === "Small" ? true : false
+    	this.activeBoba = value === "Boba" ? true : false
+    	this.activeModels = value === "Models" ? true : false
     }
     submitSearch(){
+        event.preventDefault()
     	if(!this.search){
     		this.setVariables()
     		this.filterid = "default"
     	}
     	else{
-			let temp = this.category.filter( product => product.name.startsWith(this.search))
-			this.searched = temp 
-			this.pages = this.createPages(temp)
-			temp = this.createTable(temp, 0)
-			this.displayed = temp
+            let rgx = new RegExp('^[a-zA-Z0-9_.-]*$')
+            if(rgx.test(this.search)){
+                let regex = new RegExp('.*'+this.search+'.*')
+                let temp = this.category.filter( product => regex.test(product.name) || regex.test(product.name.toLowerCase()))
+                this.searched = temp 
+                this.pages = this.createPages(temp)
+                temp = this.createTable(temp, 0)
+                this.displayed = temp
+            }
     	}
-		event.preventDefault()
     }
     filterBy(){
     	if(this.filterid === "default"){

@@ -77,6 +77,8 @@
 .item img{
 	height: 10rem;
 	width: 10rem;
+	outline: none;
+	cursor: pointer;
 }
 .item img:hover {
     opacity: 0.7;
@@ -106,6 +108,7 @@ button{
 	border-radius: 4px;
 	color: #3a3a3a;
 	background-color: #ffffff;
+	outline: none;
 }
 select{
 	background-color: #ffffff;

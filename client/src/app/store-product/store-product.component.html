@@ -1,10 +1,9 @@
-<app-store-navbar></app-store-navbar>
 <div class="wrapper">
 	<div *ngIf="loaded" class="container">
-		<button class="goBackButton" [routerLink]="['/store']">Go Back</button>
+		<button class="goBackButton" [routerLink]="['/store']">Back to Shopping</button>
 		<div class="row" ngsReveal>
 			<div class="leftSide col-md-4 col-sm-12">
-				<img class="largeImage" [src]="mainImage">
+				<img class="largeImage" [src]="mainImage" (click)="pictureModal()">
 				<div class="row">
 					<div class="allImages">
 						<img *ngFor="let image of images" class="smallImage" [src]="image.path" (click)="switchImage(image.path)">

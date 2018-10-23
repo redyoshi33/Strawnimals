@@ -1,0 +1,28 @@
+<div class="wrapper">
+	<div class="container">
+		<h4 class="accountTitle">My Account</h4>
+		<div class="orderHistory">
+			<h5>Order History</h5>
+			<table class='table table-hover'>
+			<thead class="thead">
+				<tr>
+					<th>ID</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+				<tr *ngFor="let order of orders" [routerLink]="['order', order._id]">
+					<td>{{order.id}}</td>
+					<td>{{order.date}}</td>
+					<td>{{order.status}}</td>
+					<td>${{totalOfItem(order)}}</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
+

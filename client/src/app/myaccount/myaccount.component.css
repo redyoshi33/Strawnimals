@@ -1,0 +1,38 @@
+.wrapper{
+	background-color: #f7f7f7;
+}
+.container{
+	padding: 5rem 0rem 2rem;
+	color: #3a3a3a;
+}
+.greeting{
+	padding: 1rem 2rem;
+}
+.accountTitle{
+	padding: 1rem 2rem;
+	border-bottom: 0.25rem solid #AFE7BB;
+}
+.orderHistory{
+	padding: 2rem;
+}
+.table{
+	margin-top: 2rem;
+	table-layout: fixed;
+	text-align: center;
+	background-color: #ffffff;
+}
+.thead{
+	background-color: #FEDCD2;
+	color: #DF744A;
+	border: 2px solid #C0C0C0;
+}
+.thead th{
+	border-bottom: 0; 
+}
+.tbody{
+	border: 2px solid #C0C0C0
+}
+.tbody tr{
+	cursor: pointer;
+	outline: none;
+}

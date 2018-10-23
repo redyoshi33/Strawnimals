@@ -11,11 +11,12 @@ export class CartComponent implements OnInit {
 
   constructor(
   	private _route: ActivatedRoute,
-	private _router: Router,
-	private _httpservice: HttpService,
+	  private _router: Router,
+	  private _httpservice: HttpService,
   ) { }
 
   cart: any;
+  sessionID: any;
   totalOrder: any;
   message: string;
   shipfname: string;
@@ -50,6 +51,10 @@ export class CartComponent implements OnInit {
       this.cart = data
       this.calculateShipping()
       this.totalOrder = this.totalofOrder(this.cart)
+      console.log(data)
+    })
+    this._httpservice.session.subscribe( data => {
+      this.sessionID = data['login']
     })
     this.checked = false
     this.date = new Date()
@@ -117,6 +122,9 @@ export class CartComponent implements OnInit {
 	  		if(this.billaddress2){
 	  			billaddress += ", "+this.billaddress2
 	  		}
+        if(!this.sessionID){
+          this.sessionID = ""
+        }
 	  		let order = {
 	  			'id': this.id, 
 	  			'name': this.shipfname + " " + this.shiplname,
@@ -127,10 +135,12 @@ export class CartComponent implements OnInit {
 	  			'items': this.cart,
 	  			'status': "Order in process",
 	  			'shippingPrice': this.shippingPrice,
-          'total': this.totalOrder
+          'total': this.totalOrder,
+          'userID': this.sessionID
 	  		}
 	  		let obs1 = this._httpservice.submitOrder(order)
 	  		obs1.subscribe(data => {
+          console.log(data)
 	  			this._httpservice.clearCart()
 	  			this.message = "Order Submitted! Redirecting back to the store."
           setTimeout(() => {

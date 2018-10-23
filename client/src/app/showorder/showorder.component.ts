@@ -23,17 +23,16 @@ export class ShoworderComponent implements OnInit {
   background: any;
   myStyle: any;
   session: any;
-  admin: any;
+  loggedIn: any;
 
   ngOnInit() {
     this.session = this._httpservice.checkSession()
-    this.admin = this.session['admin']
-    if(!this.admin){
+    this.loggedIn = this.session['login']
+    if(!this.loggedIn){
       this._router.navigate(['/store'])
     }
   	this._route.params.subscribe((params: Params) => this.id = params['id'])
   	this.fetchOrder(this.id)
-  	
   }
   fetchOrder(id){
   	let obs = this._httpservice.getOrder(id)

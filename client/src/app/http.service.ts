@@ -37,6 +37,9 @@ export class HttpService {
   getOrder(id){
   	return this._http.get('/findOrder/'+id)
   }
+  getUserOrders(userID){
+    return this._http.get('/findUserOrders/'+userID)
+  }
   updateOrder(id, status){
   	return this._http.put('/updateOrder/'+id, status)
   }
@@ -57,6 +60,9 @@ export class HttpService {
   }
   deleteProduct(id){
     return this._http.delete('/deleteProduct/'+id)
+  }
+  getPopular(){
+    return this._http.get('/fetchPopular')
   }
   getSimilar(category){
     return this._http.get('/findSimilar/'+category)

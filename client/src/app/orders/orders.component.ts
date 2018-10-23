@@ -55,16 +55,24 @@ export class OrdersComponent implements OnInit {
 			this.pages = this.createPages(temp)
 		}
 		else if(this.searchid === 'name'){
-			temp = this.orders.filter( order => order.name.startsWith(this.search))
-			this.searched = temp 
-			this.filtered = temp
-			this.pages = this.createPages(temp)
+			let rgx = new RegExp('^[a-zA-Z0-9_.-]*$')
+            if(rgx.test(this.search)){
+                let regex = new RegExp('.*'+this.search+'.*')
+                temp = this.orders.filter( order => regex.test(order.name) || regex.test(order.name.toLowerCase()))
+                this.searched = temp 
+                this.filtered = temp
+                this.pages = this.createPages(temp)
+            }	
 		}
 		else if(this.searchid === 'date'){
-			temp = this.orders.filter( order => order.date.startsWith(this.search))
-			this.searched = temp 
-			this.filtered = temp
-			this.pages = this.createPages(temp)
+			let rgx = new RegExp('^[0-9\/]*$')
+			if(rgx.test(this.search)){
+				let regex = new RegExp('.*'+this.search+'.*')
+				temp = this.orders.filter( order => regex.test(order.date))
+				this.searched = temp 
+				this.filtered = temp
+				this.pages = this.createPages(temp)
+			}
 		}
 		else if(this.searchid === 'default'){
 			temp = this.orders

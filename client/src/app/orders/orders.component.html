@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <div class="wrapper">
 	<div class="container">
 	    <div class='row'>
@@ -33,12 +32,12 @@
 				</tr>
 			</thead>
 			<tbody class="tbody">
-				<tr *ngFor="let order of displayed" [routerLink]="[order._id]">
-					<td><a [routerLink]="[order._id]">{{order.id}}</a></td>
-					<td>{{order.name}}</td>
-					<td>{{order.date}}</td>
-					<td>{{order.billing.address}} {{order.billing.city}}, {{order.billing.state}} {{order.billing.zip}}</td>
-					<td>${{order.total.toFixed(2)}}</td>
+				<tr *ngFor="let order of displayed">
+					<td [routerLink]="[order._id]"><a [routerLink]="[order._id]">{{order.id}}</a></td>
+					<td [routerLink]="[order._id]">{{order.name}}</td>
+					<td [routerLink]="[order._id]">{{order.date}}</td>
+					<td [routerLink]="[order._id]">{{order.billing.address}} {{order.billing.city}}, {{order.billing.state}} {{order.billing.zip}}</td>
+					<td [routerLink]="[order._id]">${{order.total.toFixed(2)}}</td>
 					<td>
 						<select name="orderStatus" (change)="updateStatus(order._id, $event)">
 							<option value="Shipped" [selected]="order.status==='Shipped'">Shipped</option>

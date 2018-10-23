@@ -110,7 +110,7 @@ export class ProductModalComponent implements OnInit {
     }
   }
   productCheck(){
-    if(this.name && this.price && this.count && this.category && this.description && this.displayedImages.length>0){
+    if(this.name && this.price && this.count>=0 && this.category && this.description && this.displayedImages.length>0){
       return true
     }
     else if(!this.name || !this.price || !this.count || !this.category || !this.description){

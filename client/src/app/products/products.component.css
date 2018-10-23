@@ -33,6 +33,7 @@
 }
 .searchButton{
 	margin-left: 0.5rem;
+	background-color: #ffd86b;
 }
 .addButton{
 	padding: 0.25rem 0.75rem;
@@ -73,4 +74,5 @@ button{
 	border-radius: 4px;
 	color: #3a3a3a;
 	background-color: #ffffff;
+	outline: none;
 }

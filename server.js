@@ -20,7 +20,7 @@ var UserSchema = new mongoose.Schema({
 var ItemSchema = new mongoose.Schema({
 	id: { type: Number },
 	name: { type: String },
-	count: { type: Number },
+	count: { type: Number, min: 0 },
 	sold: { type: Number },
 	price: { type: Number },
 	description: { type: String },
@@ -30,6 +30,7 @@ var ItemSchema = new mongoose.Schema({
 })
 var OrderSchema = new mongoose.Schema({
 	id: { type: Number },
+	userID: { type: String },
 	name: { type: String },
 	date: { type: String },
 	phone: { type: String },
@@ -66,7 +67,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
 	storage: storage,
-	limits: {fileSize: 1000000},
+	limits: {fileSize: 3000000},
 	fileFilter: function(req, file, cb){
 		checkFileType(file, cb);
 	}
@@ -163,7 +164,8 @@ app.post('/registerUser', function(req,res){
 	})	
 })
 app.get('/getAllOrders', function(req,res){
-	Order.find({}, null, {sort: 'id'}, function(err, orders){
+	Order.find({}, null, function(err, orders){
+		//sort: "id"
 		if(err){
 			res.json(err)
 		}
@@ -172,7 +174,16 @@ app.get('/getAllOrders', function(req,res){
 		}
 	})
 })
-
+app.get('/findUserOrders/:id', function(req, res){
+	Order.find({ userID: req.params.id}, function(err, orders) {
+	    if(err){
+	    	res.json(err)
+	    }
+	    else{
+	    	res.json(orders)
+	    }
+  })
+})
 app.get('/findOrder/:id', function(req, res){
 	Order.findOne({_id: req.params.id}, function(err, order) {
 	    if(err){
@@ -186,6 +197,7 @@ app.get('/findOrder/:id', function(req, res){
 app.post('/newOrder', function(req, res) {
   let order = new Order({
   	id: req.body.id,
+  	userID: req.body.userID,
 	name: req.body.name,
 	date: req.body.date,
 	phone: req.body.phone,
@@ -202,8 +214,15 @@ app.post('/newOrder', function(req, res) {
   			res.json(err)
   		}
   		else{
-  			product['count'] -= req.body.items[i]['quantity']
-  			product['sold'] += req.body.items[i]['quantity']
+  			if(req.body.items[i]['quantity']>product['count']){
+  				order.items[i].quantity = product['count']
+  				product['sold'] += product['count']
+  				product['count'] = 0
+  			}
+  			else{
+  				product['count'] -= req.body.items[i]['quantity']
+  				product['sold'] += req.body.items[i]['quantity']
+  			}
   			product.save()
   		}
   	})
@@ -213,7 +232,7 @@ app.post('/newOrder', function(req, res) {
       res.json(err)
     } 
     else {
-      res.json({order: order})
+      	res.json({order: order})
     }
   })
 })
@@ -236,7 +255,7 @@ app.put('/updateOrder/:id', function(req, res){
 	})
 })
 app.get('/getAllProduct', function(req,res){
-	Item.find({}, null, {sort: 'id'}, function(err, products){
+	Item.find({}, null, function(err, products){
 		if(err){
 			res.json(err)
 		}
@@ -254,6 +273,16 @@ app.get('/getProduct/:id', function(req, res){
 	    	res.json(product)
 	    }
   	})
+})
+app.get('/fetchPopular', function(req, res){
+	Item.find({}, null, {sort: {'sold': -1}}, function(err, products){
+		if(err){
+	    	res.json(err)
+	    }
+	    else{
+	    	res.json(products)
+	    }
+	})
 })
 app.get('/findSimilar/:category', function(req, res){
 	Item.find({category: req.params.category}, null, {sort: {'sold': -1}}, function(err, products) {

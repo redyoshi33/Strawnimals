@@ -1,0 +1,10 @@
+.mainImage{
+	width: 100%
+}
+.pictureBackButton{
+	background-color: #AFE7BB;
+    color: #ffffff;
+    cursor: pointer;
+	border-radius: 4px;
+	outline: none;
+}

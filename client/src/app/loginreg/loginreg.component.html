@@ -1,7 +1,6 @@
-<app-store-navbar></app-store-navbar>
 <div class="wrapper">
 	<div class="container">
-		<div class="row">
+		<div class="loginreg row">
 			<div class="col-md-6 col-sm-12">
 				<h4>Registration</h4>
 				<form class="form">
@@ -37,10 +36,10 @@
 							<input type="password" name="rcpassword" [(ngModel)]="confirmpassword" autocomplete="confirmpassword">
 						</div>
 					</div>
+					<div class="loginButton">
+						<button (click)="register()">Register</button>
+					</div>
 				</form>
-				<div class="loginButton">
-					<button (click)="register()">Register</button>
-				</div>
 			</div>
 			<div class="col-md-6 col-sm-12">
 				<h4>Login</h4>
@@ -61,10 +60,10 @@
 							<input type="password" name="password" [(ngModel)]="password" autocomplete="password">
 						</div>
 					</div>
+					<div class="loginButton">
+						<button (click)="login()">Login</button>
+					</div>
 				</form>
-				<div class="loginButton">
-					<button (click)="login()">Login</button>
-				</div>
 			</div>
 		</div>
 		<h5 class="message">{{message}}</h5>
