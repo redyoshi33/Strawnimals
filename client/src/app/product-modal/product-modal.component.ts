@@ -7,6 +7,7 @@ import { HttpService } from '../http.service';
   templateUrl: './product-modal.component.html',
   styleUrls: ['./product-modal.component.css']
 })
+
 export class ProductModalComponent implements OnInit {
 
   @Input() data: any; edit: boolean; lastID: number;

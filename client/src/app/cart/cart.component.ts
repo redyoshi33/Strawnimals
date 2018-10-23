@@ -111,8 +111,8 @@ export class CartComponent implements OnInit {
   	else{
   		let obs = this._httpservice.getOrders()
 	  	obs.subscribe(data => {
-	  		if(data.length > 0){
-	  			this.id = data[data.length-1]['id'] + 1
+	  		if(data['length'] > 0){
+	  			this.id = data[data['length']-1]['id'] + 1
 	  		}
 	  		let shipaddress = this.shipaddress
 	  		if(this.shipaddress2){

@@ -60,9 +60,8 @@ export class StoreProductComponent implements OnInit {
   fetchSimilar(category){
   	let obs = this._httpservice.getSimilar(category)
 	  	obs.subscribe(data => {
-        console.log(data)
 	  		this.similar = data
-	  		let index = data.findIndex(product => product.name === this.product.name)
+	  		let index = this.similar.findIndex(product => product.name === this.product.name)
 	  		this.similar.splice(index, 1)
 	  		this.similar = this.similar.slice(0,5)
         console.log(this.similar)
