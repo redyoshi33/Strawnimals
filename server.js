@@ -1,6 +1,6 @@
 const express = require("express");
 const session = require('express-session');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const path = require("path");
 const multer = require("multer")
