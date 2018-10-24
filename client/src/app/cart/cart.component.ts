@@ -51,7 +51,6 @@ export class CartComponent implements OnInit {
       this.cart = data
       this.calculateShipping()
       this.totalOrder = this.totalofOrder(this.cart)
-      console.log(data)
     })
     this._httpservice.session.subscribe( data => {
       this.sessionID = data['login']
@@ -102,7 +101,7 @@ export class CartComponent implements OnInit {
   	if(!this.shipfname || !this.shiplname || !this.shipaddress || !this.shipcity || !this.shipstate || !this.shipzip || !this.billfname || !this.billlname || !this.billaddress || !this.billcity || !this.billstate || !this.billzip || !this.billcard || !this.billsecruity || !this.monthexp || !this.yearexp){
   		this.message = "Fill out all required forms."
   	}
-  	else if(this.monthexp < 0 || this.monthexp > 12 || this.yearexp < this.date.getFullYear()){
+  	else if(this.monthexp < 0 || this.monthexp > 12 || (this.yearexp < this.date.getFullYear()) && this.monthexp < this.date.getMonth()){
   		this.message = "Please use a valid card for payment."
   	}
   	else if(this.cart.length < 1){
@@ -140,7 +139,6 @@ export class CartComponent implements OnInit {
 	  		}
 	  		let obs1 = this._httpservice.submitOrder(order)
 	  		obs1.subscribe(data => {
-          console.log(data)
 	  			this._httpservice.clearCart()
 	  			this.message = "Order Submitted! Redirecting back to the store."
           setTimeout(() => {
