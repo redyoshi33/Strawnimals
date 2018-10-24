@@ -138,7 +138,7 @@ app.get('/logout', function(req,res){
 app.post('/registerUser', function(req,res){
 	let pword = ""
 	let admin = false
-	if(req.body.name === "admin"){
+	if(req.body.username === "admin"){
 		admin = true
 	}
 	bcrypt.hash(req.body.password, saltRounds, function(err, hash){
@@ -152,6 +152,7 @@ app.post('/registerUser', function(req,res){
 				password: hash,
 				admin: admin
 			})
+			console.log(user)
 			user.save(function(err) {
 			    if(err) {
 			      res.json(err)

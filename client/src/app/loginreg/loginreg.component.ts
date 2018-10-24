@@ -56,14 +56,13 @@ export class LoginregComponent implements OnInit {
       this.message = "Passwords do not match"
     }
     else{
-      let user = {'name': this.name, 'username': this.newpassword, 'password': this.confirmpassword }
+      let user = {'name': this.name, 'username': this.newusername, 'password': this.confirmpassword }
       this.registerUser(user)
     }
   }
   registerUser(user){
     let obs = this._httpservice.regUser(user)
       obs.subscribe(data => {
-        console.log(data)
         if(data['errors']){
           this.message = data['errors']['username']['message']
         }

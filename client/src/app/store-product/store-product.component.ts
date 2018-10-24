@@ -10,7 +10,6 @@ import { PicturemodalComponent } from '../picturemodal/picturemodal.component';
   styleUrls: ['./store-product.component.css']
 })
 export class StoreProductComponent implements OnInit {
-
   constructor(
   	private _route: ActivatedRoute,
 	  private _router: Router,
