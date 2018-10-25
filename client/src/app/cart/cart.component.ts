@@ -83,6 +83,7 @@ export class CartComponent implements OnInit {
   removeItem(order){
   	let index = this.cart.indexOf(order)
   	this.cart.splice(index ,1)
+    this.calculateShipping()
   	this.totalOrder = this.totalofOrder(this.cart)
   }
   totalOfItem(order){
@@ -101,7 +102,7 @@ export class CartComponent implements OnInit {
   	if(!this.shipfname || !this.shiplname || !this.shipaddress || !this.shipcity || !this.shipstate || !this.shipzip || !this.billfname || !this.billlname || !this.billaddress || !this.billcity || !this.billstate || !this.billzip || !this.billcard || !this.billsecruity || !this.monthexp || !this.yearexp){
   		this.message = "Fill out all required forms."
   	}
-  	else if(this.monthexp < 0 || this.monthexp > 12 || (this.yearexp < this.date.getFullYear()) && this.monthexp < this.date.getMonth()){
+  	else if(this.monthexp < 0 || this.monthexp > 12 || (this.yearexp <= this.date.getFullYear() && this.monthexp <= this.date.getMonth()+1)){
   		this.message = "Please use a valid card for payment."
   	}
   	else if(this.cart.length < 1){

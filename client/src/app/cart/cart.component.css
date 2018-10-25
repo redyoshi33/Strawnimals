@@ -89,6 +89,10 @@
 .cardexp{
 	width: 30%
 }
+.disclaimInfo{
+	margin-top: 0.25rem;
+	font-size: 0.75rem;
+}
 input{
 	border-radius: 4px;
 }
